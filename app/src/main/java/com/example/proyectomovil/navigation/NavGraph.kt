@@ -90,6 +90,13 @@ sealed class Screen(val route: String) {
      * Solo accesible para rol ADMIN.
      */
     object GestionUsuarios : Screen("gestionUsuarios")
+
+    /**
+     * Pantalla de gestión de datos maestros.
+     * Permite gestionar Marcas, Categorías, Géneros y Tipos de Producto.
+     * Solo accesible para roles ENCARGADO y ADMIN.
+     */
+    object GestionDatosMaestros : Screen("gestionDatosMaestros")
 }
 
 @Composable
@@ -165,6 +172,10 @@ fun NavGraph(
                 // ADMIN: Gestionar usuarios
                 onGestionUsuariosClick = {
                     navController.navigate(Screen.GestionUsuarios.route)
+                },
+                // ENCARGADO/ADMIN: Gestionar datos maestros
+                onGestionDatosMaestrosClick = {
+                    navController.navigate(Screen.GestionDatosMaestros.route)
                 },
                 // CLIENTE: Ver historial de pedidos
                 onMisPedidosClick = {
@@ -261,8 +272,12 @@ fun NavGraph(
                         navController.popBackStack()
                     },
                     onAgregarExitoso = {
-                        // Navegar al carrito después de agregar el producto
-                        navController.navigate(Screen.Carrito.createRoute(clienteId))
+                        // ✅ CORREGIDO: Validamos que clienteId sea válido antes de navegar
+                        // Si clienteId es 0, significa que el usuario no está logueado
+                        // y no debería poder agregar al carrito
+                        if (clienteId > 0) {
+                            navController.navigate(Screen.Carrito.createRoute(clienteId))
+                        }
                     }
                 )
             }
@@ -415,6 +430,25 @@ fun NavGraph(
          */
         composable(route = Screen.GestionUsuarios.route) {
             GestionUsuariosScreen(
+                onVolverClick = {
+                    navController.popBackStack()
+                }
+            )
+        }
+
+        // ==================== PANTALLA GESTIÓN DE DATOS MAESTROS ====================
+        /**
+         * Pantalla administrativa para gestionar datos maestros.
+         * Solo accesible para usuarios con rol ENCARGADO o ADMIN.
+         *
+         * Funcionalidades:
+         * - Crear, editar y eliminar Marcas
+         * - Crear, editar y eliminar Categorías
+         * - Crear, editar y eliminar Géneros
+         * - Crear, editar y eliminar Tipos de Producto
+         */
+        composable(route = Screen.GestionDatosMaestros.route) {
+            GestionDatosMaestrosScreen(
                 onVolverClick = {
                     navController.popBackStack()
                 }

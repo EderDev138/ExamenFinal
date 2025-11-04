@@ -184,10 +184,12 @@ fun ProductoDetalleScreen(
                     // Botón agregar al carrito
                     Button(
                         onClick = {
-                            if (producto.stock >= cantidad) {
+                            if (producto.stock >= cantidad && clienteId != null) {
+                                // ✅ CORREGIDO: Validamos que clienteId no sea null
+                                // antes de llamar a agregarProducto
                                 carritoViewModel.agregarProducto(
                                     producto.idProducto,
-                                    clienteId,
+                                    clienteId, // Ahora es seguro porque validamos != null
                                     cantidad
                                 )
                                 mostrarDialogo = true

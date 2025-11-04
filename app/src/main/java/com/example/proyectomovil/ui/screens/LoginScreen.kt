@@ -179,21 +179,51 @@ fun LoginScreen(
 
         Spacer(modifier = Modifier.height(24.dp))
 
-        // Usuarios de prueba
-        Text(
-            text = "Usuarios de prueba:",
-            style = MaterialTheme.typography.labelMedium,
-            color = MaterialTheme.colorScheme.onSurfaceVariant
-        )
-        Text(
-            text = "admin@rincon.com / admin123",
-            style = MaterialTheme.typography.bodySmall,
-            color = MaterialTheme.colorScheme.onSurfaceVariant
-        )
-        Text(
-            text = "cliente@test.com / cliente123",
-            style = MaterialTheme.typography.bodySmall,
-            color = MaterialTheme.colorScheme.onSurfaceVariant
-        )
+        // ✅ Usuarios de prueba para diferentes roles
+        // Estos usuarios deben existir en el backend
+        Card(
+            colors = CardDefaults.cardColors(
+                containerColor = MaterialTheme.colorScheme.surfaceVariant
+            ),
+            modifier = Modifier.fillMaxWidth()
+        ) {
+            Column(modifier = Modifier.padding(12.dp)) {
+                Text(
+                    text = "👤 Usuarios de prueba:",
+                    style = MaterialTheme.typography.labelMedium,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    fontWeight = FontWeight.Bold
+                )
+                Spacer(modifier = Modifier.height(8.dp))
+
+                // ADMIN - Puede gestionar todo
+                Text(
+                    text = "👑 ADMIN: admin@rincon.com / admin123",
+                    style = MaterialTheme.typography.bodySmall,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant
+                )
+
+                // ENCARGADO - Puede gestionar productos y datos maestros
+                Text(
+                    text = "👨‍💼 ENCARGADO: encargado@test.com / encargado123",
+                    style = MaterialTheme.typography.bodySmall,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant
+                )
+
+                // CLIENTE - Puede comprar
+                Text(
+                    text = "🛒 CLIENTE: cliente@test.com / cliente123",
+                    style = MaterialTheme.typography.bodySmall,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant
+                )
+
+                Spacer(modifier = Modifier.height(4.dp))
+                Text(
+                    text = "💡 Nota: Si el ENCARGADO no puede entrar, debe ser aprobado por un ADMIN",
+                    style = MaterialTheme.typography.labelSmall,
+                    color = MaterialTheme.colorScheme.tertiary
+                )
+            }
+        }
     }
 }

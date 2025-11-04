@@ -32,6 +32,7 @@ fun HomeScreen(
     onMisPedidosClick: () -> Unit,
     onGestionProductosClick: () -> Unit,
     onGestionUsuariosClick: () -> Unit,
+    onGestionDatosMaestrosClick: () -> Unit,
     viewModel: ProductosViewModel = viewModel()
 ) {
     val state by viewModel.state.collectAsState()
@@ -86,6 +87,16 @@ fun HomeScreen(
                                     },
                                     leadingIcon = {
                                         Icon(Icons.Default.Add, null)
+                                    }
+                                )
+                                DropdownMenuItem(
+                                    text = { Text("Gestión Datos Maestros") },
+                                    onClick = {
+                                        mostrarMenu = false
+                                        onGestionDatosMaestrosClick()
+                                    },
+                                    leadingIcon = {
+                                        Icon(Icons.Default.Category, null)
                                     }
                                 )
                             }
