@@ -102,7 +102,7 @@ sealed class Screen(val route: String) {
 @Composable
 fun NavGraph(
     navController: NavHostController,
-    startDestination: String = Screen.Home.createGuestRoute()
+    startDestination: String = Screen.Login.route
 ) {
     NavHost(
         navController = navController,

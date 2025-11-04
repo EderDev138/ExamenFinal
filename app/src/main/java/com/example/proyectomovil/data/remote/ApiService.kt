@@ -46,135 +46,135 @@ interface ApiService {
     ): Response<Cliente>
 
     // ==================== PRODUCTOS ====================
-    @GET("/productos")
+    @GET("/api/productos")
     suspend fun getProductos(): Response<List<Producto>>
 
-    @GET("/productos/{id}")
+    @GET("/api/productos/{id}")
     suspend fun getProducto(@Path("id") id: Long): Response<Producto>
 
-    @POST("/productos")
+    @POST("/api/productos")
     suspend fun crearProducto(@Body producto: ProductoRequest): Response<Producto>
 
-    @PUT("/productos/{id}")
+    @PUT("/api/productos/{id}")
     suspend fun actualizarProducto(
         @Path("id") id: Long,
         @Body producto: ProductoRequest
     ): Response<Producto>
 
-    @DELETE("/productos/{id}")
+    @DELETE("/api/productos/{id}")
     suspend fun eliminarProducto(@Path("id") id: Long): Response<Unit>
 
     // ==================== DATOS MAESTROS ====================
 
     // --- MARCAS ---
-    @GET("marcas")
+    @GET("/api/marcas")
     suspend fun getMarcas(): Response<List<Marca>>
 
-    @GET("/marcas/{id}")
+    @GET("/api/marcas/{id}")
     suspend fun getMarca(@Path("id") id: Long): Response<Marca>
 
-    @POST("/marcas")
+    @POST("/api/marcas")
     suspend fun crearMarca(@Body marca: MarcaRequest): Response<Marca>
 
-    @PUT("/marcas/{id}")
+    @PUT("/api/marcas/{id}")
     suspend fun actualizarMarca(
         @Path("id") id: Long,
         @Body marca: MarcaRequest
     ): Response<Marca>
 
-    @DELETE("/marcas/{id}")
+    @DELETE("/api/marcas/{id}")
     suspend fun eliminarMarca(@Path("id") id: Long): Response<Unit>
 
     // --- CATEGORÍAS ---
-    @GET("/categorias")
+    @GET("/api/categorias")
     suspend fun getCategorias(): Response<List<Categoria>>
 
-    @GET("/categorias/{id}")
+    @GET("/api/categorias/{id}")
     suspend fun getCategoria(@Path("id") id: Long): Response<Categoria>
 
-    @POST("/categorias")
+    @POST("/api/categorias")
     suspend fun crearCategoria(@Body categoria: CategoriaRequest): Response<Categoria>
 
-    @PUT("/categorias/{id}")
+    @PUT("/api/categorias/{id}")
     suspend fun actualizarCategoria(
         @Path("id") id: Long,
         @Body categoria: CategoriaRequest
     ): Response<Categoria>
 
-    @DELETE("/categorias/{id}")
+    @DELETE("/api/categorias/{id}")
     suspend fun eliminarCategoria(@Path("id") id: Long): Response<Unit>
 
     // --- GÉNEROS ---
-    @GET("/generos")
+    @GET("/api/generos")
     suspend fun getGeneros(): Response<List<Genero>>
 
-    @GET("/generos/{id}")
+    @GET("/api/generos/{id}")
     suspend fun getGenero(@Path("id") id: Long): Response<Genero>
 
-    @POST("/generos")
+    @POST("/api/generos")
     suspend fun crearGenero(@Body genero: GeneroRequest): Response<Genero>
 
-    @PUT("/generos/{id}")
+    @PUT("/api/generos/{id}")
     suspend fun actualizarGenero(
         @Path("id") id: Long,
         @Body genero: GeneroRequest
     ): Response<Genero>
 
-    @DELETE("/generos/{id}")
+    @DELETE("/api/generos/{id}")
     suspend fun eliminarGenero(@Path("id") id: Long): Response<Unit>
 
     // --- TIPOS DE PRODUCTO ---
-    @GET("/tipos-producto")
+    @GET("/api/tipos-producto")
     suspend fun getTiposProducto(): Response<List<TipoProducto>>
 
-    @GET("/tipos-producto/{id}")
+    @GET("/api/tipos-producto/{id}")
     suspend fun getTipoProducto(@Path("id") id: Long): Response<TipoProducto>
 
-    @POST("/tipos-producto")
+    @POST("/api/tipos-producto")
     suspend fun crearTipoProducto(@Body tipo: TipoProductoRequest): Response<TipoProducto>
 
-    @PUT("/tipos-producto/{id}")
+    @PUT("/api/tipos-producto/{id}")
     suspend fun actualizarTipoProducto(
         @Path("id") id: Long,
         @Body tipo: TipoProductoRequest
     ): Response<TipoProducto>
 
-    @DELETE("/tipos-producto/{id}")
+    @DELETE("/api/tipos-producto/{id}")
     suspend fun eliminarTipoProducto(@Path("id") id: Long): Response<Unit>
 
     // ==================== CARRITO ====================
-    @GET("/carrito/cliente/{clienteId}")
+    @GET("/api/carrito/cliente/{clienteId}")
     suspend fun getCarrito(@Path("clienteId") clienteId: Long): Response<List<Carrito>>
 
-    @POST("/carrito")
+    @POST("/api/carrito")
     suspend fun agregarAlCarrito(@Body request: CarritoRequest): Response<Carrito>
 
-    @DELETE("/carrito/{id}")
+    @DELETE("/api/carrito/{id}")
     suspend fun eliminarItemCarrito(@Path("id") id: Long): Response<Unit>
 
-    @DELETE("/carrito/vaciar/{clienteId}")
+    @DELETE("/api/carrito/vaciar/{clienteId}")
     suspend fun vaciarCarrito(@Path("clienteId") clienteId: Long): Response<Unit>
 
     // ==================== PEDIDOS ====================
-    @GET("/pedidos/cliente/{clienteId}")
+    @GET("/api/pedidos/cliente/{clienteId}")
     suspend fun getPedidosCliente(@Path("clienteId") clienteId: Long): Response<List<Pedido>>
 
-    @GET("/pedidos/{id}")
+    @GET("/api/pedidos/{id}")
     suspend fun getPedido(@Path("id") id: Long): Response<Pedido>
 
-    @POST("/pedidos")
+    @POST("/api/pedidos")
     suspend fun crearPedido(@Body pedido: PedidoRequest): Response<Pedido>
 
-    @PUT("/pedidos/{id}")
+    @PUT("/api/pedidos/{id}")
     suspend fun actualizarPedido(
         @Path("id") id: Long,
         @Body pedido: PedidoRequest
     ): Response<Pedido>
 
     // ==================== DETALLES PEDIDO ====================
-    @GET("/detalles-pedido/pedido/{pedidoId}")
+    @GET("/api/detalles-pedido/pedido/{pedidoId}")
     suspend fun getDetallesPedido(@Path("pedidoId") pedidoId: Long): Response<List<DetallePedido>>
 
-    @POST("/detalles-pedido")
+    @POST("/api/detalles-pedido")
     suspend fun crearDetallePedido(@Body detalle: DetallePedidoRequest): Response<DetallePedido>
 }
